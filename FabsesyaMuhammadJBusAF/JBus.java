@@ -18,7 +18,7 @@ public class JBus
     public JBus()
     {
         // initialise instance variables
-        x = 0;
+        x = 1;
     }
 
     /**
