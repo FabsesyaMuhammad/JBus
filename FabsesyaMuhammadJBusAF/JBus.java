@@ -26,7 +26,7 @@ public class JBus
     public static float getDiscountPercentage(int beforeDiscount, int afterDiscount){
         float discountPercentage;    
         if(beforeDiscount>afterDiscount){
-            discountPercentage = ((beforeDiscount - afterDiscount)/beforeDiscount)*100;
+            discountPercentage = (float)((beforeDiscount - afterDiscount)/(float)(beforeDiscount))*100;
         }
         else{
             discountPercentage = 0.0f;
