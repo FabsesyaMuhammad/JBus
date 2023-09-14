@@ -53,6 +53,7 @@ public class JBus
         return originalPrice;
     }
     
+    
     public static float getAdminFeePercentage(){
         return 0.05f;
     }
