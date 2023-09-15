@@ -23,6 +23,26 @@ public class Price {
         this.rebate = rebate;
         this.discount = 0;
     } 
+    
+    private double getDiscountedPrice(){
+        if(this.discount>=100.0f){
+            this.discount=100;
+            return 0.0f;
+        }
+        else{
+            this.price = (this.price - (this.price * (this.discount/100.0f)));
+            return this.price;
+        }
+    }
+    
+    private double getRebatedPrice(){
+        this.price = this.price - this.rebate; 
+        if(this.price<0){
+            this.price = 0;
+        }
+        return this.price;
+    }
+    
 
 }
 
