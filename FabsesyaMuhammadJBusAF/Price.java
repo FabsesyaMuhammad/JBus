@@ -30,7 +30,7 @@ public class Price {
             return 0.0f;
         }
         else{
-            this.price = (this.price - (this.price * (this.discount/100.0f)));
+            this.price = (this.price - (this.price * ((double)this.discount/100.0f)));
             return this.price;
         }
     }
