@@ -16,12 +16,10 @@ public class Rating{
     }
     
     public double getAverage(){
-        if(this.count!=0){
-            return (double)this.total/this.count;
-        }
-        else{
+        if(this.count==0){
             return 0;
         }
+        return  (double)this.total/this.count;
     }
     
     public long getCount(){

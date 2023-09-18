@@ -26,7 +26,6 @@ public class Price {
     
     private double getDiscountedPrice(){
         if(this.discount>=100.0f){
-            this.discount=100;
             return 0.0f;
         }
         else{
