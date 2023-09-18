@@ -35,7 +35,7 @@ public class Price {
     }
     
     private double getRebatedPrice(){
-        if(this.price<=this.rebate){
+        if(this.price<this.rebate){
             return 0;
         }
         return this.price - this.rebate;

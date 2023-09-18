@@ -10,7 +10,7 @@ public class Rating{
         this.total = 0;
     }
     
-    public void Insert(int rating){
+    public void insert(int rating){
         this.total += rating;
         this.count++;
     }
