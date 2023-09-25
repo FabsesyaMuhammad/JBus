@@ -20,8 +20,8 @@ public class Payment extends Invoice
         this.departureDate = departureDate;
         this.busSeat = busSeat;
     }
-    public String print(){
-        String println = "\nPayment" + "\nId  : " + id + "\nBus ID : "+ String.valueOf(busId) + "\nDeparture Date : " + departureDate + "\nBus Seat : " +busSeat;
+    public String toString(){
+        String println = "\nPayment" + "\nId  : " + id + "\nBuyer ID : " + buyerId + "Renter ID : " + renterId + "\nBus ID : "+ String.valueOf(busId) + "\nDeparture Date : " + departureDate + "\nBus Seat : " +busSeat;
         return println;
     }
     public int getBusId(){

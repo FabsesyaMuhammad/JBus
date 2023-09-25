@@ -1,4 +1,4 @@
-package FabsesyaMuhammadJBusAF;
+    package FabsesyaMuhammadJBusAF;
 
 
 public class Rating{
@@ -28,5 +28,9 @@ public class Rating{
     
     public long getTotal(){
         return this.total;
+    }
+    public String toString(){
+        String println = "\nRating" + "\nCount : " + count + "\nTotal : " + total;
+        return println;
     }
 }

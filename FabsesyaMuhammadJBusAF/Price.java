@@ -39,6 +39,10 @@ public class Price {
         }
         return this.price - this.rebate;
     }*/
+    public String toString(){
+        String println = "\nPrice" + "\nPrice : " + price + "\nRebate : " + rebate;
+        return println;
+    }
     
 
 }
