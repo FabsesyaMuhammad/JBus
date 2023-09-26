@@ -30,10 +30,10 @@ public class Invoice extends Serializable
         String println = "\nInvoice" + "\nId  : " + id + "\nBuyer Id : " + buyerId + "\nRenter Id : " + renterId + "\nTime : " + time + "Bus Rating : " + rating + "Payment Status : " + status;
         return println;
     }
-    enum BusRating{
+    public enum BusRating{
         NONE, NEUTRAL, GOOD, BAD;
     }
-    enum PaymentStatus{
+    public enum PaymentStatus{
         FAILED, WAITING, SUCCESS;
     }
     
