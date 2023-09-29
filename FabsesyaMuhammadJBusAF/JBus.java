@@ -1,5 +1,7 @@
 package FabsesyaMuhammadJBusAF;
 
+import java.util.*;
+
 public class JBus
 {   /*
     public static void main(String[] args){
@@ -9,7 +11,7 @@ public class JBus
         System.out.println(testBus.price.price);
         System.out.println(testBus.capacity);
     } */
-    public static void main(String[] args){
+    /*public static void main(String[] args){
         Review testReview = new Review(1, "23 August 2023", "Bad Quality");
         Price testPrice = new Price(100000, 20000);
         Station testDeparture = new Station(2, "Depok Terminal", City.DEPOK, "Jl. Margonda Raya");
@@ -23,7 +25,39 @@ public class JBus
         System.out.println(testAccount);   
         System.out.println(testPrice);
         System.out.println(testRating);
+    }*/
+    public static void main(String[] args){
+      Price[] unfilteredArray = new Price[5];
+      for(int i = 0 ; i < unfilteredArray.length ; i++) {
+          int j = 5000;
+          unfilteredArray[i] = new Price((i  + 1) * j);
+      }
+      
+      System.out.println("Price list");
+      for(Price price : unfilteredArray){
+          System.out.println(price.price);
+      }
+      
+      System.out.println("Below 12000");
+      System.out.println(Validate.filter(unfilteredArray, 12000, true));
+      System.out.println("Above 10000");
+      System.out.println(Validate.filter(unfilteredArray, 10000, false));
+    Bus testBus = createBus();
+    // Payment
+    Payment testPayment = new Payment(1, 1, 1, testBus.id, "S1");
+    System.out.println(testPayment.getDepartureInfo());
+    System.out.println(testPayment.getTime());  
+    // Tes Schedule
+    Calendar schedule1 = Calendar.getInstance();
+    testBus.addSchedule(schedule1);
+    Calendar schedule2 = Calendar.getInstance();
+    schedule2.add(Calendar.DAY_OF_MONTH, 3);
+    testBus.addSchedule(schedule2);
+    
+    for(Schedule s: testBus.schedules){
+        testBus.printSchedule(s);
     }
+}
     public static int getBusId(){
         return 0;
     }   
@@ -78,12 +112,12 @@ public class JBus
         int adminFee = getAdminFee(price * numberOfSeat);
         return (price * numberOfSeat) + adminFee;
     }
-    /*
-    public static Bus createBus(){
+    
+    public static Bus createBus() {
         Price price = new Price(750000, 5);
-        Bus bus = new Bus("Netlab Bus", Facility.LUNCH, price, 25); 
-        return bus; 
-    }*/
+        Bus bus = new Bus(1, "Netlab Bus", Facility.LUNCH, price, 25, BusType.REGULER, City.BANDUNG, new Station(1, "Depok Terminal", City.DEPOK, "Jl. Margonda Raya"), new Station(2, "Halte UI", City.JAKARTA, "Universitas Indonesia"));
+        return bus;
+    }
     
     
     

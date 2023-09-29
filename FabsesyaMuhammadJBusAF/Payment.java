@@ -1,24 +1,26 @@
 package FabsesyaMuhammadJBusAF;
 
-
+import java.util.Calendar;
+import java.text.*;
 public class Payment extends Invoice
 {
     private int busId;
-    public String departureDate;
+    public Calendar departureDate;
     public String busSeat;
     
-    public Payment(int id, int buyerId, int renterId, String time, int busId, String departureDate, String busSeat){
-        super(id,buyerId,renterId,time);
+    public Payment(int id, int buyerId, int renterId, int busId, String busSeat){
+        super(id,buyerId,renterId);
         this.busId = busId;
-        this.departureDate = departureDate;
+        this.departureDate = Calendar.getInstance();
         this.busSeat = busSeat;
-        
+        departureDate.add(Calendar.DATE, 2);
     }
-    public Payment(int id, Account buyer, Renter renter, String time, int busId, String departureDate, String busSeat){
-        super(id, buyer, renter,time);
+    public Payment(int id, Account buyer, Renter renter, int busId, String busSeat){
+        super(id, buyer, renter);
         this.busId = busId;
-        this.departureDate = departureDate;
+        this.departureDate = Calendar.getInstance();
         this.busSeat = busSeat;
+        departureDate.add(Calendar.DATE, 2);
     }
     public String toString(){
         String println = "\nPayment" + "\nId  : " + id + "\nBuyer ID : " + buyerId + "Renter ID : " + renterId + "\nBus ID : "+ String.valueOf(busId) + "\nDeparture Date : " + departureDate + "\nBus Seat : " +busSeat;
@@ -27,5 +29,15 @@ public class Payment extends Invoice
     public int getBusId(){
         return busId;
     }
+    public String getDepartureInfo(){
+        String println = "\nDeparture Info" + "\nId  : " + id + "\nBuyer ID : " + buyerId + "\nRenter ID : " + renterId + "\nBus ID : "+ String.valueOf(busId) + "\nDeparture Date : " + departureDate.getTime() + "\nBus Seat : " +busSeat;
+        return println;
+    }
     
+    public String getTime(){
+        SimpleDateFormat format
+            = new SimpleDateFormat("MMMM dd, yyyy HH:mm:ss");
+        
+        return format.format(this.departureDate.getTime());
+    } 
 }

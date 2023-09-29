@@ -1,7 +1,7 @@
 package FabsesyaMuhammadJBusAF;
 
 
-public class Voucher extends Serializable
+public class Voucher extends Serializable implements FileParser
 {
     public String name;
     private boolean used;
@@ -51,7 +51,12 @@ public class Voucher extends Serializable
         }
         
     }
-    
+    public boolean read(String obj){
+        return false;        
+    }
+    public Object write(){
+        return null;
+    }
     
     
 }
