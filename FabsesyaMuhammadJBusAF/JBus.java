@@ -54,7 +54,7 @@ public class JBus
                 System.out.println(Payment.makeBooking(t3, "AF01", b));
                 
                 System.out.println("\nMake booking at July 20, 2023 15:00:00 Seat AF01 again");
-                System.out.println(Payment.makeBooking(t3, "AF01", b));
+                System.out.println(Payment.makeBooking(t3, "AF01", b)); 
                 
                 System.out.println("\nUpdated Schedule\n");
                 b.schedules.forEach(Schedule::printSchedule);
