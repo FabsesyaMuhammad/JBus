@@ -2,14 +2,13 @@
 comment0.target=Bus
 comment1.params=id\ name\ facility\ price\ capacity\ busType\ city\ departure\ arrival
 comment1.target=Bus(int,\ java.lang.String,\ Facility,\ Price,\ int,\ BusType,\ City,\ Station,\ Station)
-comment2.params=calendar
-comment2.target=void\ addSchedule(java.util.Calendar)
-comment3.params=schedule
-comment3.target=void\ printSchedule(Schedule)
-comment4.params=
-comment4.target=java.lang.String\ toString()
-comment5.params=obj
-comment5.target=boolean\ read(java.lang.String)
-comment6.params=
-comment6.target=java.lang.Object\ write()
-numComments=7
+comment2.params=calendar\ capacity
+comment2.target=void\ addSchedule(java.sql.Timestamp,\ int)
+comment3.params=
+comment3.target=java.lang.String\ toString()
+comment3.text=public\ void\ printSchedule(Schedule\ schedule){\r\n\ \ \ \ \ \ \ \ SimpleDateFormat\ format\r\n\ \ \ \ \ \ \ \ \ \ \ \ \=\ new\ SimpleDateFormat\ ("'Tanggal\ keberangkatan\:\ 'MMMM\ dd,\ yyyy\ HH\:mm\:ss");\r\n\ \ \ \ \ \ \ \ \r\n\ \ \ \ \ \ \ \ System.out.println(format.format(schedule.departureSchedule.getTime()));\r\n\ \ \ \ \ \ \ \ System.out.println("Daftar\ Kursi\ dan\ Ketersediaan\ Kursi\ \:\ ");\r\n\ \ \ \ \ \ \ \ \ \r\n\ \ \ \ \ \ \ \ int\ maxSeatsPerRow\ \=\ 4;\r\n\ \ \ \ \ \ \ \ int\ currentSeat\ \=\ 1;\r\n\ \ \ \ \ \ \ \ \r\n\ \ \ \ \ \ \ \ for(String\ seat\ \:\ schedule.seatAvailability.keySet()){\r\n\ \ \ \ \ \ \ \ \ \ \ \ System.out.print(seat\ +\ "\ \:\ "\ +\ schedule.seatAvailability.get(seat)\ +\ "\\t");\r\n\ \ \ \ \ \ \ \ \ \ \ \ \r\n\ \ \ \ \ \ \ \ \ \ \ \ if(currentSeat\ %\ maxSeatsPerRow\ \=\=\ 0){\r\n\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ System.out.println();\r\n\ \ \ \ \ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ \ \ \ \ currentSeat++;\r\n\ \ \ \ \ \ \ \ }\r\n\ \ \ \ \ \ \ \ \r\n}
+comment4.params=obj
+comment4.target=boolean\ read(java.lang.String)
+comment5.params=
+comment5.target=java.lang.Object\ write()
+numComments=6

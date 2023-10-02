@@ -2,7 +2,7 @@ package FabsesyaMuhammadJBusAF;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.sql.Timestamp;
 import java.text.*;
 
 public class Bus extends Serializable implements FileParser{
@@ -28,11 +28,11 @@ public class Bus extends Serializable implements FileParser{
         this.arrival = arrival;
         this.schedules = new ArrayList<>();
     }   
-    public void addSchedule(Calendar calendar){
+    public void addSchedule(Timestamp calendar, int capacity){
         Schedule schedule = new Schedule(calendar, capacity);
         schedules.add(schedule);
     }
-    public void printSchedule(Schedule schedule){
+    /*public void printSchedule(Schedule schedule){
         SimpleDateFormat format
             = new SimpleDateFormat ("'Tanggal keberangkatan: 'MMMM dd, yyyy HH:mm:ss");
         
@@ -51,7 +51,7 @@ public class Bus extends Serializable implements FileParser{
             currentSeat++;
         }
         
-    }
+    }*/
     public String toString(){
         String println = "\nBus" + "\nId  : " + id + "\nName : " + name + "\nFacility : " + facility + "" + price + "\nCapacity : " + capacity + "\nBus Type : " + busType + "\nCity : " + city + "\nDeparture : " + departure + "\nArrival : " + arrival;
         return println;

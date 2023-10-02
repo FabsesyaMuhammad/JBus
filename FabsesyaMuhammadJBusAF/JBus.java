@@ -2,7 +2,7 @@ package FabsesyaMuhammadJBusAF;
 
 import java.util.*;
 import java.text.*;
-import java.util.Calendar;
+import java.sql.Timestamp;
 
 public class JBus
 {   /*
@@ -29,6 +29,39 @@ public class JBus
         System.out.println(testRating);
     }*/
     public static void main(String[] args){
+        Bus b = createBus();
+            Timestamp schedule1 = Timestamp.valueOf("2023-7-18 15:00:00");
+            Timestamp schedule2 = Timestamp.valueOf("2023-7-20 15:00:00");
+            
+            b.addSchedule(schedule1, 12);
+            b.addSchedule(schedule2, 12);
+            
+            b.schedules.forEach(Schedule::printSchedule);
+            
+            Timestamp t1 = Timestamp.valueOf("2023-7-19 15:00:00");
+                System.out.println("Make booking at July 19, 2023 15:00:00 Seat AF12");
+                System.out.println(Payment.makeBooking(t1, "AF12", b));
+                
+            Timestamp t2 = Timestamp.valueOf("2023-7-18 15:00:00");
+                System.out.println("\nMake booking at July 18, 2023 15:00:00 Seat AF20");
+                System.out.println(Payment.makeBooking(t2, "AF20", b));
+                
+                System.out.println("\nMake booking at July 18, 2023 15:00:00 Seat AF07");
+                System.out.println(Payment.makeBooking(t2, "AF07", b));
+                
+            Timestamp t3 = Timestamp.valueOf("2023-7-20 12:00:00");
+                System.out.println("\nMake booking at July 20, 2023 15:00:00 Seat AF01");
+                System.out.println(Payment.makeBooking(t3, "AF01", b));
+                
+                System.out.println("\nMake booking at July 20, 2023 15:00:00 Seat AF01 again");
+                System.out.println(Payment.makeBooking(t3, "AF01", b));
+                
+                System.out.println("\nUpdated Schedule\n");
+                b.schedules.forEach(Schedule::printSchedule);
+                
+            
+            
+        /*
       Price[] unfilteredArray = new Price[5];
       for(int i = 0 ; i < unfilteredArray.length ; i++) {
           int j = 5000;
@@ -60,6 +93,8 @@ public class JBus
         testBus.printSchedule(s);
         System.out.println();
     }
+    */
+    
 }
     public static int getBusId(){
         return 0;
