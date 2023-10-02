@@ -22,22 +22,24 @@ public class Payment extends Invoice
         this.busSeat = busSeat;
         departureDate.add(Calendar.DATE, 2);
     }
-    public String toString(){
+    /*public String toString(){
         String println = "\nPayment" + "\nId  : " + id + "\nBuyer ID : " + buyerId + "Renter ID : " + renterId + "\nBus ID : "+ String.valueOf(busId) + "\nDeparture Date : " + departureDate + "\nBus Seat : " +busSeat;
         return println;
-    }
+    }*/
     public int getBusId(){
         return busId;
     }
     public String getDepartureInfo(){
-        String println = "\nDeparture Info" + "\nId  : " + id + "\nBuyer ID : " + buyerId + "\nRenter ID : " + renterId + "\nBus ID : "+ String.valueOf(busId) + "\nDeparture Date : " + departureDate.getTime() + "\nBus Seat : " +busSeat;
-        return println;
+        SimpleDateFormat format
+            = new SimpleDateFormat("MMMM dd, yyyy HH:mm:ss");
+        String println = "\nPayment Id: " + id + " Buyer Id: " + buyerId + " Renter Id: " + renterId + " bus ID : "+ String.valueOf(busId) + " Departure Date : " + format.format(this.departureDate.getTime()) + " Bus Seat : " +busSeat;
+        return println;     
     }
     
     public String getTime(){
         SimpleDateFormat format
-            = new SimpleDateFormat("MMMM dd, yyyy HH:mm:ss");
+            = new SimpleDateFormat("MMMM dd, yyyy HH:mm:ss'\n'");
         
-        return format.format(this.departureDate.getTime());
+        return format.format(super.time.getTime());
     } 
 }

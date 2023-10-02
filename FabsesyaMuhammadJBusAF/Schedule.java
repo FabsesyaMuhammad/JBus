@@ -10,7 +10,7 @@ public class Schedule
     public Map<String, Boolean> seatAvailability;
     
     public Schedule(Calendar departureSchedule, int numberOfSeats){
-        this.departureSchedule = Calendar.getInstance();
+        this.departureSchedule = departureSchedule;
         initializeSeatAvailability(numberOfSeats);
     }
     

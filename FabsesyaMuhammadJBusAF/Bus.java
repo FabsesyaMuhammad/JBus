@@ -37,7 +37,19 @@ public class Bus extends Serializable implements FileParser{
             = new SimpleDateFormat ("'Tanggal keberangkatan: 'MMMM dd, yyyy HH:mm:ss");
         
         System.out.println(format.format(schedule.departureSchedule.getTime()));
-        System.out.println(schedule.seatAvailability);
+        System.out.println("Daftar Kursi dan Ketersediaan Kursi : ");
+         
+        int maxSeatsPerRow = 4;
+        int currentSeat = 1;
+        
+        for(String seat : schedule.seatAvailability.keySet()){
+            System.out.print(seat + " : " + schedule.seatAvailability.get(seat) + "\t");
+            
+            if(currentSeat % maxSeatsPerRow == 0){
+                System.out.println();
+            }
+            currentSeat++;
+        }
         
     }
     public String toString(){
