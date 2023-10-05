@@ -1,0 +1,62 @@
+package FabsesyaMuhammadJBusAF;
+
+import java.sql.Timestamp;
+import java.text.*;
+public class Payment extends Invoice
+{
+    private int busId;
+    public Timestamp departureDate;
+    public String busSeat;
+    
+    public Payment(int id, int buyerId, int renterId, int busId, String busSeat, Timestamp departureDate){
+        super(id,buyerId,renterId);
+        this.busId = busId;
+        this.departureDate = new Timestamp(System.currentTimeMillis());
+        this.busSeat = busSeat;
+        /*departureDate.add(Calendar.DATE, 2);*/
+    }
+    public Payment(int id, Account buyer, Renter renter, int busId, String busSeat,Timestamp departureDate ){
+        super(id, buyer, renter);
+        this.busId = busId;
+        this.departureDate = new Timestamp(System.currentTimeMillis());
+        this.busSeat = busSeat;
+        /*departureDate.add(Calendar.DATE, 2);*/
+    }
+    /*public String toString(){
+        String println = "\nPayment" + "\nId  : " + id + "\nBuyer ID : " + buyerId + "Renter ID : " + renterId + "\nBus ID : "+ String.valueOf(busId) + "\nDeparture Date : " + departureDate + "\nBus Seat : " +busSeat;
+        return println;
+    }*/
+    public static boolean isAvailable(Timestamp departureSchedule, String seat, Bus bus){
+        for(Schedule x : bus.schedules){
+            if (x.departureSchedule.equals(departureSchedule) && x.isSeatAvailable(seat)){
+                return true;
+            }
+        }
+        return false;
+    }
+    public static boolean makeBooking(Timestamp departureSchedule, String seat, Bus bus){
+        for(Schedule x : bus.schedules){
+            if (x.departureSchedule.equals(departureSchedule) && x.isSeatAvailable(seat)){
+                x.bookSeat(seat);
+                return true;
+            }
+        }
+        return false;
+    }
+    public int getBusId(){
+        return busId;
+    }
+    public String getDepartureInfo(){
+        SimpleDateFormat format
+            = new SimpleDateFormat("MMMM dd, yyyy HH:mm:ss");
+        String println = "\nPayment Id: " + id + " Buyer Id: " + buyerId + " Renter Id: " + renterId + " bus ID : "+ String.valueOf(busId) + " Departure Date : " + format.format(this.departureDate.getTime()) + " Bus Seat : " +busSeat;
+        return println;     
+    }
+    
+    public String getTime(){
+        SimpleDateFormat format
+            = new SimpleDateFormat("MMMM dd, yyyy HH:mm:ss'\n'");
+        
+        return format.format(super.time.getTime());
+    } 
+}
