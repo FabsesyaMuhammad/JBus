@@ -40,7 +40,7 @@ public class Price {
         return this.price - this.rebate;
     }*/
     public String toString(){
-        String println = "Price" + "Price : " + price + "Rebate : " + rebate;
+        String println = "Price : " + price + "\nRebate : " + rebate;
         return println;
     }
     

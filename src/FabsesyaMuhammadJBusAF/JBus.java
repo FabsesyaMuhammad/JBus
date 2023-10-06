@@ -29,7 +29,40 @@ public class JBus
         System.out.println(testRating);
     }*/
     public static void main(String[] args){
-        System.out.println("Hello from IntelliJ!");
+        Integer[] numbers = {18, 10, 22, 43, 18, 67, 12, 11, 88, 22, 18};
+        System.out.println("Number "+Arrays.toString(numbers));
+
+        // Tes Algorithm
+        System.out.print("1. ");
+        testCount(numbers);
+        System.out.print("2. ");
+        testFind(numbers);
+        System.out.print("3. ");
+        testExist(numbers);
+        System.out.println("4. Filtering");
+        testCollect(numbers);
+        /*Integer[] numbers = {10, 20, 30, 40, 50};
+        int valueToCheck = 30;
+
+        boolean result = Algorithm.exists(numbers, valueToCheck);
+        if(result){
+            System.out.println(valueToCheck + " terdapat dalam array");
+        } else System.out.println(valueToCheck + " tidak terdapat dalam array");*/
+        /*Price price = new Price(1000);
+        Station station = new Station(1, "Stasiun UI", City.DEPOK, "Jl. UI");
+        Station Cawang = new Station(1, "Stasiun Cawang", City.JAKARTA, "Jl. Cawang");
+        Bus bus1 = new Bus( "UI", Facility.LUNCH, price, 1000, BusType.DOUBLE_DECKER, City.DEPOK, station, Cawang);
+        Serializable.setLastAssignedId(Bus.class, 10);
+        Bus bus2 = new Bus("UI", Facility.LUNCH, price, 1000, BusType.DOUBLE_DECKER, City.DEPOK, station, Cawang);
+        Bus bus3 = new Bus("UI", Facility.LUNCH, price, 1000, BusType.DOUBLE_DECKER, City.DEPOK, station, Cawang);
+
+        System.out.println(station);
+        System.out.println(Cawang);
+        System.out.println(bus1);
+        System.out.println(bus2);
+        System.out.println(bus3);*/
+
+        //System.out.println("Hello from IntelliJ!");
         /*Bus b = createBus();
         Timestamp schedule1 = Timestamp.valueOf("2023-7-18 15:00:00");
         Timestamp schedule2 = Timestamp.valueOf("2023-7-20 12:00:00");
@@ -93,6 +126,42 @@ public class JBus
     */
     
     }
+    private static void testExist(Integer[] t) {
+        int valueToCheck = 67;
+        boolean result3 = Algorithm.exists(t, valueToCheck);
+        if (result3) {
+            System.out.println(valueToCheck + " exist in the array.");
+        } else {
+            System.out.println(valueToCheck + " doesn't exists in the array.");
+        }
+    }
+    public static void testCount(Integer[] t) {
+        int valueToCount = 18;
+        int result = Algorithm.count(t, valueToCount);
+        System.out.println("Number " + valueToCount + " appears " + result + " times");
+    }
+    public static void testFind(Integer[] t) {
+        Integer valueToFind = 69;
+        Integer result2 = Algorithm.find(t, valueToFind);
+        System.out.print("Finding " + valueToFind + " inside the array : ");
+        if (result2 != null) {
+            System.out.println("Found!" + result2);
+        } else {
+            System.out.println("Not Found");
+        }
+    }
+    private static void testCollect(Integer[] t) {
+        Predicate<Integer> below = (val)->val<=22;
+        Predicate<Integer> above = (val)->val>43;
+
+        List<Integer> integerBelow = Algorithm.collect(t, below);
+        List<Integer> integerAbove = Algorithm.collect(t, above);
+
+        System.out.println("Below 22");
+        System.out.println(integerBelow);
+        System.out.println("Above 43");
+        System.out.println(integerAbove);
+    }
     public static int getBusId(){
         return 0;
     }   
@@ -150,7 +219,7 @@ public class JBus
     
     public static Bus createBus() {
         Price price = new Price(750000, 5);
-        Bus bus = new Bus(1, "Netlab Bus", Facility.LUNCH, price, 25, BusType.REGULER, City.BANDUNG, new Station(1, "Depok Terminal", City.DEPOK, "Jl. Margonda Raya"), new Station(2, "Halte UI", City.JAKARTA, "Universitas Indonesia"));
+        Bus bus = new Bus( "Netlab Bus", Facility.LUNCH, price, 25, BusType.REGULER, City.BANDUNG, new Station(1, "Depok Terminal", City.DEPOK, "Jl. Margonda Raya"), new Station(2, "Halte UI", City.JAKARTA, "Universitas Indonesia"));
         return bus;
     }
     

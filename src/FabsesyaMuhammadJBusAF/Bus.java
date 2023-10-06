@@ -16,8 +16,8 @@ public class Bus extends Serializable implements FileParser{
     public Station arrival;
     public List<Schedule> schedules;
     
-    public Bus(int id, String name, Facility facility, Price price, int capacity, BusType busType, City city, Station departure, Station arrival){
-        super(id);
+    public Bus(/*int id,*/ String name, Facility facility, Price price, int capacity, BusType busType, City city, Station departure, Station arrival){
+        super();
         this.name = name;
         this.facility = facility;
         this.price = price;
@@ -53,7 +53,7 @@ public class Bus extends Serializable implements FileParser{
         
     }*/
     public String toString(){
-        String println = "\nBus" + "\nId  : " + id + "\nName : " + name + "\nFacility : " + facility + "" + price + "\nCapacity : " + capacity + "\nBus Type : " + busType + "\nCity : " + city + "\nDeparture : " + departure + "\nArrival : " + arrival;
+        String println = "\nBus" + "\nId  : " + id + "\nName : " + name + "\nFacility : " + facility + "\n" + price + "\nCapacity : " + capacity + "\nBus Type : " + busType + "\nCity : " + city + "\nDeparture : " + departure + "\nArrival : " + arrival;
         return println;
     }
     public boolean read(String obj){
