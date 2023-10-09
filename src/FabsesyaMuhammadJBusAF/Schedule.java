@@ -1,6 +1,7 @@
 package FabsesyaMuhammadJBusAF;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Map;
 import java.util.LinkedHashMap;
 import java.text.*;
@@ -51,7 +52,27 @@ public class Schedule
         }
         return false;   
     }
+    public boolean isSeatAvailable(List<String> seat){
+        for(int i = 0; i< seat.size(); i++){
+            if(seatAvailability.containsKey(seat.get(i))){
+                return seatAvailability.get(seat.get(i));
+            }
+        }
+        return false;
+    }
     public void bookSeat(String seat){
         seatAvailability.put(seat, false);
+    }
+    public void bookSeat(List<String> seat){
+        for(String i : seat) {
+            seatAvailability.put(i, false);
+        }
+    }
+
+    @Override
+    public String toString(){
+
+        int occupy = Algorithm.count(seatAvailability.values().iterator(), true);
+        return "Schedule\t: " + departureSchedule + "\nOccupied\t: " + occupy + "/" + seatAvailability.size();
     }
 }

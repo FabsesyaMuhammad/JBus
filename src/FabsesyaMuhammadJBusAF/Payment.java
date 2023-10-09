@@ -1,22 +1,26 @@
 package FabsesyaMuhammadJBusAF;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.*;
+import java.util.Iterator;
+import java.util.List;
+
 public class Payment extends Invoice
 {
     private int busId;
     public Timestamp departureDate;
     public String busSeat;
     
-    public Payment(int id, int buyerId, int renterId, int busId, String busSeat, Timestamp departureDate){
-        super(id,buyerId,renterId);
+    public Payment( int buyerId, int renterId, int busId, String busSeat, Timestamp departureDate){
+        super(buyerId,renterId);
         this.busId = busId;
         this.departureDate = new Timestamp(System.currentTimeMillis());
         this.busSeat = busSeat;
         /*departureDate.add(Calendar.DATE, 2);*/
     }
-    public Payment(int id, Account buyer, Renter renter, int busId, String busSeat,Timestamp departureDate ){
-        super(id, buyer, renter);
+    public Payment( Account buyer, Renter renter, int busId, String busSeat,Timestamp departureDate ){
+        super( buyer, renter);
         this.busId = busId;
         this.departureDate = new Timestamp(System.currentTimeMillis());
         this.busSeat = busSeat;
@@ -26,15 +30,46 @@ public class Payment extends Invoice
         String println = "\nPayment" + "\nId  : " + id + "\nBuyer ID : " + buyerId + "Renter ID : " + renterId + "\nBus ID : "+ String.valueOf(busId) + "\nDeparture Date : " + departureDate + "\nBus Seat : " +busSeat;
         return println;
     }*/
-    public static boolean isAvailable(Timestamp departureSchedule, String seat, Bus bus){
+    /*public static boolean isAvailable(Timestamp departureSchedule, String seat, Bus bus){
         for(Schedule x : bus.schedules){
             if (x.departureSchedule.equals(departureSchedule) && x.isSeatAvailable(seat)){
                 return true;
             }
         }
         return false;
+    }*/
+    public static Schedule availableSchedule(Timestamp departureSchedule, String seat, Bus bus){
+        for(Schedule x : bus.schedules){
+            if (x.departureSchedule.equals(departureSchedule)){
+                if(x.isSeatAvailable(seat)) {
+                    return x;
+                }
+            }
+        }
+        return null;
     }
+    public static Schedule availableSchedule(Timestamp departureSchedule, List<String> seat, Bus bus){
+        for(Schedule x : bus.schedules){
+            if (x.departureSchedule.equals(departureSchedule)){
+                if(x.isSeatAvailable(seat)) {
+                    return x;
+                }
+            }
+        }
+        return null;
+    }
+
     public static boolean makeBooking(Timestamp departureSchedule, String seat, Bus bus){
+        for(Schedule x : bus.schedules){
+            if (x.departureSchedule.equals(departureSchedule) && x.isSeatAvailable(seat)){
+                x.bookSeat(seat);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean makeBooking(Timestamp departureSchedule, List<String> seat, Bus bus){
         for(Schedule x : bus.schedules){
             if (x.departureSchedule.equals(departureSchedule) && x.isSeatAvailable(seat)){
                 x.bookSeat(seat);
@@ -58,5 +93,6 @@ public class Payment extends Invoice
             = new SimpleDateFormat("MMMM dd, yyyy HH:mm:ss'\n'");
         
         return format.format(super.time.getTime());
-    } 
+    }
+
 }

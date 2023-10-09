@@ -17,13 +17,7 @@ public class Serializable
         }
     }
     public static <T extends Serializable> Integer setLastAssignedId(Class<T> tClass, int id) {
-        for (Class<?> i : mapCounter.keySet()) {
-            if (i.equals(tClass)) {
-                mapCounter.put(tClass, id);
-                return id;
-            }
-        }
-        return -1;
+        return mapCounter.put(tClass, id);
     }
 
     public static <T extends Serializable> Integer getLastAssignedId(Class<T> tClass) {
