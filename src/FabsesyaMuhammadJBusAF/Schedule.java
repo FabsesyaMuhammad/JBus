@@ -72,7 +72,7 @@ public class Schedule
     @Override
     public String toString(){
 
-        int occupy = Algorithm.count(seatAvailability.values().iterator(), true);
+        int occupy = Algorithm.count(seatAvailability.values().iterator(), false);
         return "Schedule\t: " + departureSchedule + "\nOccupied\t: " + occupy + "/" + seatAvailability.size();
     }
 }

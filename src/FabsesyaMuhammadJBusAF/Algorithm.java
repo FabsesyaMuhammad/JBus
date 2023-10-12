@@ -19,17 +19,16 @@ public class Algorithm {
     public static <T> List<T> paginate(Iterator<T> iterator, int page, int pageSize, Predicate<T> pred){
         List<T> pages = new ArrayList<T>();
         T temp;
-        int cnt1 = 0;
-        int cnt2 = 0;
-        while(cnt1<pages.size() && iterator.hasNext()){
-            if(cnt1 >= (page*pageSize) && cnt2<((page+1)*pageSize)){
+        int cnt = 0;
+        while(pages.size()<pageSize && iterator.hasNext()){
+            if(cnt >= (page*pageSize) && cnt<((page+1)*pageSize)){
                 temp = iterator.next();
                 pages.add(temp);
-                cnt1++;
-                cnt2++;
+                cnt++;
             }
             else{
-                cnt1++;
+                cnt++;
+                temp = iterator.next();
             }
         }
         return pages;

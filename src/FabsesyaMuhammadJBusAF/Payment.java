@@ -49,12 +49,18 @@ public class Payment extends Invoice
         return null;
     }
     public static Schedule availableSchedule(Timestamp departureSchedule, List<String> seat, Bus bus){
+        int cnt = 0;
         for(Schedule x : bus.schedules){
-            if (x.departureSchedule.equals(departureSchedule)){
-                if(x.isSeatAvailable(seat)) {
-                    return x;
+            for(int i=0; i<seat.size(); i++){
+                if (x.departureSchedule.equals(departureSchedule) && x.isSeatAvailable(seat.get(i))){
+                    cnt++;
                 }
+
             }
+            if(cnt==seat.size()){
+                return x;
+            }
+
         }
         return null;
     }
@@ -62,6 +68,7 @@ public class Payment extends Invoice
     public static boolean makeBooking(Timestamp departureSchedule, String seat, Bus bus){
         for(Schedule x : bus.schedules){
             if (x.departureSchedule.equals(departureSchedule) && x.isSeatAvailable(seat)){
+
                 x.bookSeat(seat);
                 return true;
             }
@@ -71,10 +78,13 @@ public class Payment extends Invoice
 
     public static boolean makeBooking(Timestamp departureSchedule, List<String> seat, Bus bus){
         for(Schedule x : bus.schedules){
-            if (x.departureSchedule.equals(departureSchedule) && x.isSeatAvailable(seat)){
-                x.bookSeat(seat);
+            if (x.departureSchedule.equals(departureSchedule)){
+                for(int i=0; i<seat.size(); i++){
+                    x.bookSeat(seat.get(i));
+                }
                 return true;
             }
+
         }
         return false;
     }
