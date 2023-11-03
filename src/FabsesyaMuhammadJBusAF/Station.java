@@ -14,7 +14,7 @@ public class Station extends Serializable
         this.address = address;
     }
     public String toString(){
-        String println ="\nId  : " + id + "\nStation Name : " + stationName + "\nCity : " + city.toString() + "\nAddress : " + address;
+        String println ="Id  : " + id + "\tStation Name : " + stationName + "\tCity : " + city.toString() + "\tAddress : " + address;
         return println;
     }
     

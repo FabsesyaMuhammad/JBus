@@ -5,12 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="17de405c-4762-42aa-8008-fa4c2b75d7cc" name="Changes" comment="TP05-Migrasi ke Intellij IDEA">
+      <change afterPath="$PROJECT_DIR$/data/buses.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/data/buses_CS.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/FabsesyaMuhammadJBusAF/JsonTable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JBus.iml" beforeDir="false" afterPath="$PROJECT_DIR$/JBus.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FabsesyaMuhammadJBusAF/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FabsesyaMuhammadJBusAF/Account.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FabsesyaMuhammadJBusAF/Algorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FabsesyaMuhammadJBusAF/Algorithm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FabsesyaMuhammadJBusAF/Bus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FabsesyaMuhammadJBusAF/Bus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FabsesyaMuhammadJBusAF/FileParser.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/FabsesyaMuhammadJBusAF/JBus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FabsesyaMuhammadJBusAF/JBus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FabsesyaMuhammadJBusAF/Payment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FabsesyaMuhammadJBusAF/Payment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FabsesyaMuhammadJBusAF/Schedule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FabsesyaMuhammadJBusAF/Schedule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FabsesyaMuhammadJBusAF/Price.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FabsesyaMuhammadJBusAF/Price.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FabsesyaMuhammadJBusAF/Renter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FabsesyaMuhammadJBusAF/Renter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FabsesyaMuhammadJBusAF/Station.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FabsesyaMuhammadJBusAF/Station.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FabsesyaMuhammadJBusAF/Voucher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FabsesyaMuhammadJBusAF/Voucher.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,18 +49,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/asus/Downloads/OOP/JBus/lib",
-    "onboarding.tips.debug.path": "C:/Users/asus/Downloads/OOP/JBus/src/Main.java",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/asus/Downloads/OOP/JBus/lib&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/asus/Downloads/OOP/JBus/src/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="FabsesyaMuhammadJBusAF" />

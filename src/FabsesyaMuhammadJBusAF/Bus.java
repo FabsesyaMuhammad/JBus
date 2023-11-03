@@ -1,11 +1,17 @@
 package FabsesyaMuhammadJBusAF;
 
+import com.google.gson.reflect.TypeToken;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 import java.sql.Timestamp;
 import java.text.*;
 
-public class Bus extends Serializable implements FileParser{
+public class Bus extends Serializable
+{
     public int capacity;
     public Facility facility;
     public String name;
@@ -29,8 +35,17 @@ public class Bus extends Serializable implements FileParser{
         this.schedules = new ArrayList<>();
     }   
     public void addSchedule(Timestamp calendar){
+        boolean duplicate = false;
         Schedule schedule = new Schedule(calendar, capacity);
-        schedules.add(schedule);
+        for (Schedule exist : schedules) {
+            if (exist.departureSchedule.equals(schedule.departureSchedule)) {
+                duplicate = true;
+            }
+        }
+
+        if (!duplicate) {
+            schedules.add(schedule);
+        }
     }
     /*public void printSchedule(Schedule schedule){
         SimpleDateFormat format
@@ -53,7 +68,7 @@ public class Bus extends Serializable implements FileParser{
         
     }*/
     public String toString(){
-        String println = "\nBus" + "\nId  : " + id + "\nName : " + name + "\nFacility : " + facility + "\n" + price + "\nCapacity : " + capacity + "\nBus Type : " + busType + "\nCity : " + city + "\nDeparture : " + departure + "\nArrival : " + arrival;
+        String println = "Id  : " + id + "\tName : " + name + "\tFacility : " + facility + "\t" + price + "\tCapacity : " + capacity + "\tBus Type : " + busType + "\tCity : " + city + "\tDeparture : " + departure + "\tArrival : " + arrival;
         return println;
     }
     public boolean read(String obj){

@@ -2,7 +2,7 @@ package FabsesyaMuhammadJBusAF;
 
     
 
-public class Account extends Serializable implements FileParser
+public class Account extends Serializable
 {
     public String email;
     public String name;
