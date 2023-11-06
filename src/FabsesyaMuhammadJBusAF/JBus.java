@@ -1,15 +1,39 @@
 package FabsesyaMuhammadJBusAF;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
+import java.sql.Timestamp;
 public class JBus{
     public static void main(String[] args){
-
+        try {
+            Bus bus = createBus();
+            bus.schedules.forEach(Schedule::printSchedule);
+            for (int i = 0; i < 10; i++) {
+                BookingThread thread = new BookingThread("Thread" + i, bus, Timestamp.valueOf("2023-07-27 19:00:00"));
+                Thread.sleep(500);
+            }
+            bus.schedules.forEach(Schedule::printSchedule);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        try{
+            String filepath = "C:\\Users\\asus\\Downloads\\OOP\\JBus\\data\\accountDatabase.json";
+            JsonTable<Account> AccountList = new JsonTable<>(Account.class, filepath);
+            Account account1 = new Account(0, "Fabseskuy", "fabsesya15@gmail.com", "f4BS3sya");
+            AccountList.add(account1);
+            AccountList.forEach(e->System.out.println(e.toString()));
+            AccountList.writeJson();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        /*
         //Pre CS Modul 6
         try {
             String filepath = "C:\\Users\\asus\\Downloads\\OOP\\JBus\\data\\buses_CS.json";
@@ -28,9 +52,16 @@ public class JBus{
         } catch (Throwable t) {
             t.printStackTrace();
         }
-
+*/
     }
-    public static List<Bus> filterByDeparture(List<Bus> buses, City departure, int page, int pageSize) {
+    public static Bus createBus() {
+        Price price = new Price(750000, 5);
+        Bus bus = new Bus("Netlab Bus", Facility.LUNCH, price, 25, BusType.REGULER, City.BANDUNG, new Station("Depok Terminal", City.DEPOK, "Jl. Margonda Raya"), new Station("Halte UI", City.JAKARTA, "UniversitasIndonesia"));
+        Timestamp timestamp = Timestamp.valueOf("2023-07-27 19:00:00");
+        bus.addSchedule(timestamp);
+        return bus;
+    }
+    /*public static List<Bus> filterByDeparture(List<Bus> buses, City departure, int page, int pageSize) {
         List<Bus> list = new ArrayList<>();
 
         for(Bus bus : buses) {
@@ -69,7 +100,7 @@ public class JBus{
             return true;});
 
         return pageList;
-    }
+    }*/
 
 
 }
