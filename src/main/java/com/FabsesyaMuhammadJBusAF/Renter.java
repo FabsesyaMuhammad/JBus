@@ -2,30 +2,31 @@ package com.FabsesyaMuhammadJBusAF;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import com.FabsesyaMuhammadJBusAF.dbjson.*;
 
 public class Renter extends Serializable
 {
     public String address;
     public String companyName;
     public String phoneNumber;
-    private final String REGEX_PHONE = "[0-9]{9,12}";
-    private final String REGEX_NAME = "[A-Z][A-Za-z0-9]";
+    private static final String REGEX_PHONE = "[0-9]{9,12}";
+    private static final String REGEX_NAME = "[A-Z][A-Za-z0-9]";
 
     
-    Renter(String companyName){
+    public Renter(String companyName){
         super();
         this.companyName = companyName;
         this.phoneNumber = "";
         this.address = "";
     }
 
-    Renter(String companyName, String phoneNumber){
+    public Renter(String companyName, String phoneNumber){
         super();
         this.companyName = companyName;
         this.phoneNumber = phoneNumber;
         this.address = "";
     }
-    Renter(String companyName, String phoneNumber, String address){
+    public Renter(String companyName, String phoneNumber, String address){
         super();
         this.companyName = companyName;
         this.phoneNumber = phoneNumber;

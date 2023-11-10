@@ -1,7 +1,8 @@
-package com.FabsesyaMuhammadJBusAF;
+package com.FabsesyaMuhammadJBusAF.dbjson;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
+
 
 import java.io.*;
 import java.lang.reflect.Array;

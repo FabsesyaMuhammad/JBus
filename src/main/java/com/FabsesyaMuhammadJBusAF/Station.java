@@ -1,5 +1,6 @@
 package com.FabsesyaMuhammadJBusAF;
 
+import com.FabsesyaMuhammadJBusAF.dbjson.*;
 
 public class Station extends Serializable
 {

@@ -1,6 +1,7 @@
 package com.FabsesyaMuhammadJBusAF;
 
 import java.sql.Timestamp;
+import com.FabsesyaMuhammadJBusAF.dbjson.*;
 
 public class Invoice extends Serializable
 {
