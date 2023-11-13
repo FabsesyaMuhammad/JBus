@@ -14,26 +14,26 @@ import java.text.*;
 public class Bus extends Serializable
 {
     public int capacity;
-    public Facility facility;
+    public List<Facility> facility;
     public String name;
     public Price price;
     public BusType busType;
-    public City city;
     public Station departure;
     public Station arrival;
     public List<Schedule> schedules;
+    public int accountId;
     
-    public Bus(/*int id,*/ String name, Facility facility, Price price, int capacity, BusType busType, City city, Station departure, Station arrival){
+    public Bus(String name, List<Facility> facility, Price price, int capacity, BusType busType, Station departure, Station arrival){
         super();
         this.name = name;
-        this.facility = facility;
+        this.facility = new ArrayList<>();
         this.price = price;
         this.capacity = capacity;
         this.busType = busType;
-        this.city = city;
         this.departure = departure;
         this.arrival = arrival;
         this.schedules = new ArrayList<>();
+        this.accountId = accountId;
     }   
     public void addSchedule(Timestamp calendar){
         boolean duplicate = false;
@@ -69,7 +69,7 @@ public class Bus extends Serializable
         
     }*/
     public String toString(){
-        String println = "Id  : " + id + "\tName : " + name + "\tFacility : " + facility + "\t" + price + "\tCapacity : " + capacity + "\tBus Type : " + busType + "\tCity : " + city + "\tDeparture : " + departure + "\tArrival : " + arrival;
+        String println = "Id  : " + id + "\tName : " + name + "\tFacility : " + facility + "\t" + price + "\tCapacity : " + capacity + "\tBus Type : " + busType +   "\tDeparture : " + departure + "\tArrival : " + arrival;
         return println;
     }
     public boolean read(String obj){

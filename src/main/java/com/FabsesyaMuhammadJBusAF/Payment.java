@@ -3,6 +3,7 @@ package com.FabsesyaMuhammadJBusAF;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.*;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -10,20 +11,20 @@ public class Payment extends Invoice
 {
     private int busId;
     public Timestamp departureDate;
-    public String busSeat;
+    public List<String> busSeats;
     
     public Payment( int buyerId, int renterId, int busId, String busSeat, Timestamp departureDate){
         super(buyerId,renterId);
         this.busId = busId;
         this.departureDate = new Timestamp(System.currentTimeMillis());
-        this.busSeat = busSeat;
+        this.busSeats = new ArrayList<>();
         /*departureDate.add(Calendar.DATE, 2);*/
     }
     public Payment( Account buyer, Renter renter, int busId, String busSeat,Timestamp departureDate ){
         super( buyer, renter);
         this.busId = busId;
         this.departureDate = new Timestamp(System.currentTimeMillis());
-        this.busSeat = busSeat;
+        this.busSeats = new ArrayList<>();
         /*departureDate.add(Calendar.DATE, 2);*/
     }
     /*public String toString(){
@@ -94,7 +95,7 @@ public class Payment extends Invoice
     public String getDepartureInfo(){
         SimpleDateFormat format
             = new SimpleDateFormat("MMMM dd, yyyy HH:mm:ss");
-        String println = "\nPayment Id: " + id + " Buyer Id: " + buyerId + " Renter Id: " + renterId + " bus ID : "+ String.valueOf(busId) + " Departure Date : " + format.format(this.departureDate.getTime()) + " Bus Seat : " +busSeat;
+        String println = "\nPayment Id: " + id + " Buyer Id: " + buyerId + " Renter Id: " + renterId + " bus ID : "+ String.valueOf(busId) + " Departure Date : " + format.format(this.departureDate.getTime()) + " Bus Seat : " +busSeats;
         return println;     
     }
     
