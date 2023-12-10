@@ -5,9 +5,13 @@ import com.FabsesyaMuhammadJBusAF.dbjson.JsonAutowired;
 import com.FabsesyaMuhammadJBusAF.dbjson.JsonTable;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.List;
 
+import static com.FabsesyaMuhammadJBusAF.controller.AccountController.accountTable;
+
+/** Ini untuk Mengatur Base Api dari Payment **/
 @RestController
 @RequestMapping("/payment")
 public class PaymentController implements BasicGetController<Payment> {
@@ -18,6 +22,7 @@ public class PaymentController implements BasicGetController<Payment> {
         return paymentTable;
     }
 
+    /** Ini untuk Base Api Make Booking**/
     @PostMapping("/makeBooking")
     public BaseResponse<Payment> makeBooking
             (
@@ -27,32 +32,54 @@ public class PaymentController implements BasicGetController<Payment> {
                     @RequestParam List<String> busSeats,
                     @RequestParam String departureDate
             ){
-    Account buyer = Algorithm.<Account>find(AccountController.accountTable, e -> e.id==buyerId);
-    Account renter = Algorithm.<Account>find(AccountController.accountTable, e -> e.id == renterId);
-    Bus bus = Algorithm.<Bus>find(BusController.busTable, e -> (e.id==busId)&&(e.accountId==renterId));
-    if(buyer!=null&&bus!=null){
-        if(Payment.makeBooking(Timestamp.valueOf(departureDate), busSeats, bus)){
-            Payment payment = new Payment(buyer, renter.company, busId, String.valueOf(busSeats), Timestamp.valueOf(departureDate));
-            payment.status = Invoice.PaymentStatus.WAITING;
-            paymentTable.add(payment);
-            return new BaseResponse<Payment>(true, "Success Booking", payment);
+
+        Account buyerAcc = Algorithm.<Account>find(accountTable, a->a.id == buyerId);
+//        Account renterAcc = Algorithm.<Account>find(accountTable, r->r.company != null & r.company.id == renterId);
+        Bus bus = Algorithm.<Bus>find(BusController.busTable, b->b.id == busId);
+        double priceBook = Algorithm.<String>count(busSeats, p->true) * bus.price.price;
+        Schedule schedule = Payment.availableSchedule(Timestamp.valueOf(departureDate), busSeats, bus);
+        if(buyerAcc == null){
+            return new BaseResponse<>(false, "Account not  valid", null);
         }
-        else return new BaseResponse<Payment>(false, "Failed booking, no schedule or seats", null);
+//        if(renterAcc == null){
+//            return new BaseResponse<>(false, "Renter not valid", null);
+//        }
+        if(bus == null){
+            return new BaseResponse<>(false, "Bus not valid", null);
+        }
+        if(priceBook > buyerAcc.balance){
+            return new BaseResponse<>(false, "Not enough balance", null);
+        }
+        if(schedule == null){
+            return new BaseResponse<>(false, "Schedule not exist", null);
+        }
+        if(!Payment.makeBooking(Timestamp.valueOf(departureDate), busSeats, bus)){
+            return new BaseResponse<>(false, "Payment Failed", null);
+        }
+        Payment payment = new Payment(buyerId, renterId, busId, busSeats, Timestamp.valueOf(departureDate));
+        paymentTable.add(payment);
+        return new BaseResponse<>(true, "Payment Succesful", null);
     }
-    return new BaseResponse<Payment>(false, "Failed booking, no account or bus", null);
 
-    }
-
+    /** Ini untuk Base Api Accept**/
     @PostMapping("/{id}/accept")
-    public BaseResponse<Payment> accept(@PathVariable int id){
-        Payment payment = Algorithm.<Payment>find(getJsonTable(), e -> e.id == id);
-        if(payment != null){
-            payment.status = Invoice.PaymentStatus.SUCCESS;
-            return new BaseResponse<Payment>(true, "Success accept payment", payment);
+    public BaseResponse<Payment> accept (@PathVariable int id) {
+
+        Payment payment = Algorithm.<Payment>find(paymentTable, t -> t.id == id);
+        Account paymentAccount = Algorithm.<Account>find(AccountController.accountTable, a -> a.id == payment.buyerId);
+
+        Bus tempBus = Algorithm.<Bus>find(BusController.busTable, b -> b.id == payment.getBusId());
+        if (payment == null) {
+            return new BaseResponse<>(false, "Payment tidak ditemukan", null);
         }
-        return new BaseResponse<Payment>(false, "Failed accept payment", null);
+        else {
+            payment.status = Invoice.PaymentStatus.SUCCESS;
+            paymentAccount.balance -= tempBus.price.price;
+        }
+        return new BaseResponse<>(true, "Payment telah berhasil", payment);
     }
 
+    /** Ini untuk Base Api Cancel**/
     @PostMapping("/{id}/cancel")
     public BaseResponse<Payment> cancel(@PathVariable int id){
         Payment payment = Algorithm.<Payment>find(getJsonTable(), e -> e.id==id);
@@ -61,5 +88,19 @@ public class PaymentController implements BasicGetController<Payment> {
             return new BaseResponse<Payment>(true, "Success cancel payment", payment);
         }
         return new BaseResponse<Payment>(false, "Failed cancel payment", null);
+    }
+    /** Ini untuk Base Api Get All Payment**/
+    @GetMapping("/getAllPayment")
+    public List<Payment> getAllPayment(
+
+    ) {
+        System.out.println("Over here");
+        return getJsonTable();
+    }
+
+    /** Ini untuk Base Api Get My Payment**/
+    @GetMapping("/getMyPayment")
+    public List<Payment> getMyPayment(@RequestParam int buyerId) {
+        return Algorithm.<Payment>collect(getJsonTable(), b->b.buyerId == buyerId);
     }
 }

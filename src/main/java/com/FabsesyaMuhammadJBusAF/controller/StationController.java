@@ -7,6 +7,9 @@ import com.FabsesyaMuhammadJBusAF.dbjson.JsonAutowired;
 import com.FabsesyaMuhammadJBusAF.dbjson.JsonTable;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+/** Ini untuk mengatur Base Api dari Station**/
 @RestController
 @RequestMapping("/station")
 public class StationController implements BasicGetController<Station> {
@@ -16,7 +19,8 @@ public class StationController implements BasicGetController<Station> {
         return stationTable;
     }
 
-    //Add new Station
+
+    /** Ini untuk Base Api Create**/
     @PostMapping("/create")
     public BaseResponse<Station> createStation(
             @RequestParam String stationName,
@@ -47,6 +51,11 @@ public class StationController implements BasicGetController<Station> {
             // Handle other unexpected errors
             return new BaseResponse<>(false, "An error occurred while adding the station", null);
         }
+    }
+    /** Ini untuk Base Api Get All**/
+    @GetMapping("/getAll")
+    public List<Station> getAllStation() {
+        return getJsonTable();
     }
 
 }

@@ -14,7 +14,7 @@ import java.text.*;
 public class Bus extends Serializable
 {
     public int capacity;
-    public List<Facility> facility;
+    public List<Facility> facilities;
     public String name;
     public Price price;
     public BusType busType;
@@ -23,10 +23,10 @@ public class Bus extends Serializable
     public List<Schedule> schedules;
     public int accountId;
     
-    public Bus(String name, List<Facility> facility, Price price, int capacity, BusType busType, Station departure, Station arrival){
+    public Bus(String name, List<Facility> facility, Price price, int capacity, BusType busType, Station departure, Station arrival, int accountId){
         super();
         this.name = name;
-        this.facility = new ArrayList<>();
+        this.facilities = facility;
         this.price = price;
         this.capacity = capacity;
         this.busType = busType;
@@ -69,7 +69,7 @@ public class Bus extends Serializable
         
     }*/
     public String toString(){
-        String println = "Id  : " + id + "\tName : " + name + "\tFacility : " + facility + "\t" + price + "\tCapacity : " + capacity + "\tBus Type : " + busType +   "\tDeparture : " + departure + "\tArrival : " + arrival;
+        String println = "Id  : " + id + "\tName : " + name + "\tFacility : " + facilities + "\t" + price + "\tCapacity : " + capacity + "\tBus Type : " + busType +   "\tDeparture : " + departure + "\tArrival : " + arrival;
         return println;
     }
     public boolean read(String obj){

@@ -1,5 +1,6 @@
 package com.FabsesyaMuhammadJBusAF.controller;
 
+/** Ini untuk Base Response **/
 public class BaseResponse<T> {
     public boolean success;
     public String message;

@@ -12,6 +12,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 
+/** Account Controller merupakan class untuk Base Api dari class Account**/
 @RestController
 @RequestMapping("/account")
 public class AccountController implements BasicGetController<Account>
@@ -25,6 +26,7 @@ public class AccountController implements BasicGetController<Account>
     @GetMapping
     String index() { return "account page"; }
 
+    /** Ini untuk Base Api Register**/
     @PostMapping("/register")
     BaseResponse<Account> register
             (
@@ -60,6 +62,8 @@ public class AccountController implements BasicGetController<Account>
             return new BaseResponse<Account>(false, "Gagal register", null);
 
     }
+
+    /** Ini untuk Base Api Login**/
     @PostMapping("/login")
     BaseResponse<Account> login
             (
@@ -92,6 +96,8 @@ public class AccountController implements BasicGetController<Account>
 
         return new BaseResponse<>(false, "Gagal login", null);
     }
+
+    /** Ini untuk Base Api Register Renter**/
     @PostMapping("/{id}/registerRenter")
     BaseResponse<Renter> registerRenter
             (
@@ -112,6 +118,7 @@ public class AccountController implements BasicGetController<Account>
         return new BaseResponse<>(false, "Gagal", null);
     }
 
+    /** Ini untuk Base Api Top Up**/
     @PostMapping("/{id}/topUp")
     BaseResponse<Double> topUp
             (

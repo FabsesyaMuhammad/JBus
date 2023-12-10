@@ -13,18 +13,18 @@ public class Payment extends Invoice
     public Timestamp departureDate;
     public List<String> busSeats;
     
-    public Payment( int buyerId, int renterId, int busId, String busSeat, Timestamp departureDate){
+    public Payment( int buyerId, int renterId, int busId, List<String> busSeats, Timestamp departureDate){
         super(buyerId,renterId);
         this.busId = busId;
-        this.departureDate = new Timestamp(System.currentTimeMillis());
-        this.busSeats = new ArrayList<>();
+        this.departureDate = departureDate;
+        this.busSeats = busSeats;
         /*departureDate.add(Calendar.DATE, 2);*/
     }
-    public Payment( Account buyer, Renter renter, int busId, String busSeat,Timestamp departureDate ){
+    public Payment( Account buyer, Renter renter, int busId, List<String> busSeats,Timestamp departureDate ){
         super( buyer, renter);
         this.busId = busId;
-        this.departureDate = new Timestamp(System.currentTimeMillis());
-        this.busSeats = new ArrayList<>();
+        this.departureDate = departureDate;
+        this.busSeats = busSeats;
         /*departureDate.add(Calendar.DATE, 2);*/
     }
     /*public String toString(){
@@ -78,14 +78,14 @@ public class Payment extends Invoice
     }
 
     public static boolean makeBooking(Timestamp departureSchedule, List<String> seat, Bus bus){
-        for(Schedule x : bus.schedules){
-            if (x.departureSchedule.equals(departureSchedule)){
-                for(int i=0; i<seat.size(); i++){
-                    x.bookSeat(seat.get(i));
-                }
-                return true;
-            }
+        for (Schedule sched : bus.schedules) {
+            if (sched.departureSchedule.equals(departureSchedule)) {
+                for (String seatName : sched.seatAvailability.keySet()) {
+                    sched.bookSeat(seat);
+                    return true;
 
+                }
+            }
         }
         return false;
     }
